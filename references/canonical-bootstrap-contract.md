@@ -2,6 +2,8 @@
 
 This is the source contract for project wiki bootstrap. It defines what the Project HTML Wiki Skill, a CLI, or wrapper must create or preserve when turning a rough idea or existing folder into an HTML-first, agent-ready project.
 
+Bootstrap requires at least thin source context. If the user has no project idea, no repo, no PRD, no notes, or only a vague prompt, run `intake_discovery` first using [`intake-discovery-contract.md`](intake-discovery-contract.md). Do not create bootstrap artifacts from zero context.
+
 ## Purpose
 
 Bootstrap produces a trustworthy project handoff rather than an always-on development environment. A completed bootstrap leaves the user with a project folder that has durable HTML context, local agent guidance, documented implementation direction when known, and clear next actions in their editor or terminal.
@@ -13,6 +15,8 @@ The contract is adapter-neutral. A skill, CLI, desktop wrapper, or future automa
 - `bootstrap_new`: creates the wiki, source index, local guidance, Git posture, and handoff summary for a new project without installing dependencies or generating app code.
 - `import_existing`: preservation mode; scans an existing repo, adds missing wiki and skill structure, preserves existing files, and names unknowns instead of inventing certainty.
 
+`intake_discovery` is a pre-bootstrap mode, not a completed bootstrap. It gathers enough source context to decide whether `bootstrap_new` is appropriate.
+
 ## Required Inputs
 
 - Project name.
@@ -22,6 +26,26 @@ The contract is adapter-neutral. A skill, CLI, desktop wrapper, or future automa
 - Mode: `bootstrap_new` or `import_existing`.
 - Public-entry or external-audience signal, when present.
 - Optional stack preferences, treated as planning inputs rather than final scaffold decisions.
+
+## Thin Context Versus Zero Context
+
+Thin context is enough to bootstrap when it contains a rough but concrete idea, source document, repository evidence, or explicitly stated unknowns. A thin bootstrap may create the required wiki baseline, but it must make uncertainty visible in `wiki/Sources.html`, `wiki/roadmap.html`, and any handoff rather than generating unsupported source briefs, roadmap certainty, scaffold choices, or implementation plans.
+
+Zero context is not enough to bootstrap. Treat the request as zero context when the user only says they want to start a project, build something, brainstorm an app, or figure out what to make, and there is no repo or source material that establishes project direction. In zero context:
+
+- do not create `AGENTS.md`, `wiki/`, source briefs, roadmap, plans, repo-local skills, or scaffold files
+- ask focused intake questions first
+- stop with an intake summary unless the user confirms enough direction to proceed
+- hand off to `bootstrap_new` only after the user has confirmed minimum viable context
+
+Minimum viable context for `bootstrap_new` after intake:
+
+- project name or working title
+- target user or audience
+- project purpose or problem
+- primary outcome the project should deliver
+- rough product or interface type
+- known constraints, or explicit unknowns that should be recorded
 
 ## Required Outputs
 

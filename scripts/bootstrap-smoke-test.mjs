@@ -365,6 +365,66 @@ const designStructureTokens = [
   "responsive-table",
 ];
 
+async function validateContracts() {
+  const failures = [];
+  const skill = await readFile(path.join(root, "SKILL.md"), "utf8");
+  const bootstrap = await readFile(path.join(root, "references/canonical-bootstrap-contract.md"), "utf8");
+  const intake = await readFile(path.join(root, "references/intake-discovery-contract.md"), "utf8");
+  const validation = await readFile(path.join(root, "references/validation-checklist.md"), "utf8");
+  const readme = await readFile(path.join(root, "README.md"), "utf8");
+
+  for (const [label, content] of [
+    ["SKILL.md", skill],
+    ["canonical-bootstrap-contract.md", bootstrap],
+    ["validation-checklist.md", validation],
+    ["README.md", readme],
+  ]) {
+    if (!content.includes("intake_discovery")) failures.push(`${label} missing intake_discovery`);
+  }
+
+  for (const token of [
+    "Do not create `wiki/`",
+    "Do not create bootstrap artifacts from zero context",
+    "Thin context",
+    "Zero context",
+  ]) {
+    if (!skill.includes(token) && !bootstrap.includes(token)) failures.push(`zero/thin context contract missing ${token}`);
+  }
+
+  for (const token of [
+    "project type",
+    "audience",
+    "problem",
+    "desired outcome",
+    "constraints",
+    "interface shape",
+    "first useful milestone",
+    "Mode: `intake_discovery`",
+    "Status: stopped before file creation",
+  ]) {
+    if (!intake.includes(token)) failures.push(`intake contract missing ${token}`);
+  }
+
+  for (const token of [
+    "Zero Source Context",
+    "Does not create `AGENTS.md`",
+    "Thin Source Context",
+    "Creates required bootstrap baseline files",
+  ]) {
+    if (!validation.includes(token)) failures.push(`validation checklist missing ${token}`);
+  }
+
+  for (const token of [
+    "Start With No Source Context",
+    "Use $project-html-wiki to help me figure out a new project from scratch.",
+    "Thin context is different",
+  ]) {
+    if (!readme.includes(token)) failures.push(`README missing ${token}`);
+  }
+
+  return failures;
+}
+
 async function writeOutput() {
   await rm(outDir, { recursive: true, force: true });
   for (const [rel, content] of files) {
@@ -423,6 +483,7 @@ async function validateOutput() {
 
 await writeOutput();
 const failures = await validateOutput();
+failures.push(...await validateContracts());
 
 if (failures.length) {
   console.error("Bootstrap smoke test failed:");

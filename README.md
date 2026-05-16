@@ -2,7 +2,7 @@
 
 A skill for AI coding agents creating and maintaining an HTML-first project memory layer for agentic development.
 
-Bootstrapping is one mode. The skill also supports feature planning, plan updates, codebase-to-wiki sync, decision capture, project-context logging, roadmap maintenance, and additive wiki audits/upgrades.
+Zero-context intake and bootstrapping are modes. The skill also supports feature planning, plan updates, codebase-to-wiki sync, decision capture, project-context logging, roadmap maintenance, and additive wiki audits/upgrades.
 
 Inspired by [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), [Thariq’s The Unreasonable Effectiveness of HTML](https://x.com/trq212/status/2052809885763747935) and the growing practice of using standalone HTML artifacts for agent-generated specs, explainers, reports, and planning documents. This skill adapts persistent, LLM-maintained project memory into browser-readable HTML pages for source context, project plans, roadmap state, agent guidance, and codebase-to-wiki sync.
 
@@ -55,6 +55,7 @@ sync_changes -> wiki/log.html + updated plans/source docs
 ## What It Helps With
 
 - Bootstraps a new project into a maintained `wiki/` structure.
+- Interviews first when you want to start from no project idea, repo, PRD, or notes, then bootstraps only after enough direction is confirmed.
 - Generates standalone, browser-readable HTML pages with embedded CSS and optional inline SVG or JavaScript for richer review.
 - Applies frontend design guidance when generating HTML artifacts so wiki pages have deliberate typography, layout, hierarchy, color, and interaction choices instead of generic document styling.
 - Selects artifact-specific HTML patterns for planning, code review, reports, design prototypes, and custom editors instead of using one generic page shape.
@@ -82,6 +83,7 @@ Use $project-html-wiki to bootstrap a wiki for this existing app.
 Use $project-html-wiki to plan this feature before implementation.
 Use $project-html-wiki to sync recent code changes back into the wiki.
 Use $project-html-wiki to audit this project's wiki and agent guidance files.
+Use $project-html-wiki to help me figure out a new project from scratch.
 ```
 
 ## What The Agent Does
@@ -129,6 +131,20 @@ During initialization, the agent should record a repo automation policy in `wiki
 For an existing live project, the agent should treat the project as post-MVP unless source evidence says otherwise. It should create `wiki/plans/index.html` and `wiki/roadmap.html`, but skip `wiki/plans/mvp/` by default. Focused `features/`, `maintenance/`, or `releases/` plans should be created only when a concrete workstream exists.
 
 For a brand-new project, invoke the skill with source context such as a prompt, PRD, notes, or initial repo files. The agent creates the wiki baseline, source index, roadmap, planning area, bounded agent guidance, and Git initialization unless opted out.
+
+### Start With No Source Context
+
+If you want to start a project but do not yet have a repo, PRD, notes, or concrete idea, ask:
+
+```text
+Use $project-html-wiki to help me figure out a new project from scratch.
+```
+
+The agent should run `intake_discovery` first. It should ask focused questions about project type, audience, problem, desired outcome, constraints, interface shape, and the first useful milestone. It should not create `wiki/`, `AGENTS.md`, source briefs, plans, roadmap files, repo-local skills, dependency manifests, or scaffold files during intake.
+
+After the intake summary includes a working title, target audience, project purpose, primary outcome, rough product/interface type, and known constraints or explicit unknowns, the agent should ask for confirmation. Once confirmed, it can proceed to `bootstrap_new` and preserve the confirmed unknowns in `wiki/Sources.html`.
+
+Thin context is different. If you already have a rough but concrete idea or explicit unknowns, the skill may bootstrap a minimal wiki that names gaps instead of inventing certainty.
 
 ### Enable Auto-Commits
 

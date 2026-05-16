@@ -29,7 +29,7 @@ Use this compact format for a validation summary:
 ```markdown
 ## [YYYY-MM-DD] validation | [target or mode]
 
-- Mode: `[bootstrap_new|import_existing|plan_feature|update_plan|sync_changes|record_execution|audit_or_upgrade]`
+- Mode: `[intake_discovery|bootstrap_new|import_existing|plan_feature|update_plan|sync_changes|record_execution|audit_or_upgrade]`
 - Target root: `[path]`
 - Result: `[pass|warn|fail]`
 - Checked: [short list]
@@ -53,6 +53,16 @@ When a validation result is only useful for the current task and does not affect
 - Auto-commits stage only intended files and leave unrelated dirty files untouched.
 - Final handoff lists created, updated, preserved, skipped, failed, blocked, and `present_but_not_upgraded` artifacts.
 - Final handoff names unresolved unknowns and contradictions.
+
+## Zero Source Context
+
+- Chooses `intake_discovery` when the user has no project idea, no repo, no PRD, no notes, or only a vague "I want to build something" prompt.
+- Does not create `AGENTS.md`, `CLAUDE.md`, `wiki/`, source briefs, roadmap files, plans, repo-local skills, dependency manifests, or scaffold files during intake.
+- Asks focused questions about project type, audience, problem, desired outcome, constraints, interface shape, and first useful milestone.
+- Does not invent product direction, stack, source briefs, roadmap certainty, or implementation plans from no context.
+- Stops with an intake summary when minimum viable context is missing.
+- Clearly says whether the workflow stopped at `intake_discovery` or proceeded from `intake_discovery` to `bootstrap_new`.
+- Proceeds to `bootstrap_new` only after the user confirms enough direction or explicitly asks to proceed with named unknowns.
 
 ## HTML Design Quality Checks
 
@@ -128,6 +138,7 @@ When a validation result is only useful for the current task and does not affect
 - Names missing product, technical, audience, and implementation details as unknowns.
 - Avoids unsupported source briefs.
 - Avoids app scaffold generation during bootstrap.
+- Creates required bootstrap baseline files when target root is clear and the supplied rough idea or explicit unknowns provide enough context for a minimal handoff.
 
 ## Product Or Technical Source Context
 

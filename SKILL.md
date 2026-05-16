@@ -5,7 +5,7 @@ description: Use this skill when the user explicitly wants to create, import, ma
 
 # Project HTML Wiki Skill
 
-Use this skill to create and maintain an HTML-first project memory layer for agentic development. Bootstrapping is one mode; ongoing feature planning, plan maintenance, codebase-to-wiki sync, decision capture, project-context logging, and wiki audits are also first-class work.
+Use this skill to create and maintain an HTML-first project memory layer for agentic development. Zero-context intake and bootstrapping are modes; ongoing feature planning, plan maintenance, codebase-to-wiki sync, decision capture, project-context logging, and wiki audits are also first-class work.
 
 ## HTML-First Output
 
@@ -28,6 +28,7 @@ Before writing a substantial HTML artifact, load [`references/html-artifact-patt
 1. Detect the target project root and whether the request is setup, planning, codebase sync, maintenance, project-context logging, or audit work.
 2. Inspect before writing: root files, manifests, changed files, recent commits when relevant, existing agent guidance such as `AGENTS.md` or `CLAUDE.md`, existing `wiki/`, source notes, PRDs, briefs, proposals, plans, roadmap, project-context log, workspace structure, and current Git state.
 3. Choose one mode:
+   - `intake_discovery` for a pre-bootstrap interview when the user wants to start a software project but has no repo, no project idea, no PRD, no notes, or only a vague project prompt.
    - `bootstrap_new` for a new HTML-first project wiki, source index, local instructions, Git posture, and handoff.
    - `import_existing` for preservation-first retrofit of an existing repo.
    - `plan_feature` for creating a decision-complete plan before meaningful feature, architecture, config, schema, dependency, test, or app behavior work.
@@ -46,6 +47,7 @@ Load references by mode instead of by default:
 
 | Mode | Read Before Writing |
 | --- | --- |
+| `intake_discovery` | [`references/intake-discovery-contract.md`](references/intake-discovery-contract.md) |
 | `bootstrap_new` | [`references/canonical-bootstrap-contract.md`](references/canonical-bootstrap-contract.md), [`references/generated-baseline-artifacts.md`](references/generated-baseline-artifacts.md), [`references/html-artifact-patterns.md`](references/html-artifact-patterns.md); also [`references/example-minimal-bootstrap.md`](references/example-minimal-bootstrap.md) for simple greenfield bootstraps |
 | `import_existing` | [`references/canonical-bootstrap-contract.md`](references/canonical-bootstrap-contract.md), [`references/generated-baseline-artifacts.md`](references/generated-baseline-artifacts.md), [`references/html-artifact-patterns.md`](references/html-artifact-patterns.md), [`references/validation-checklist.md`](references/validation-checklist.md) |
 | `plan_feature` | [`references/planning-contract.md`](references/planning-contract.md), [`references/html-artifact-patterns.md`](references/html-artifact-patterns.md) |
@@ -55,6 +57,17 @@ Load references by mode instead of by default:
 | `audit_or_upgrade` | [`references/validation-checklist.md`](references/validation-checklist.md), [`references/upgrade-contract.md`](references/upgrade-contract.md), [`references/html-artifact-patterns.md`](references/html-artifact-patterns.md) when creating or materially updating HTML artifacts; load bootstrap or baseline references only when creating missing standard artifacts or repairing managed blocks |
 
 Use the repo-local skill guidance embedded in [`references/generated-baseline-artifacts.md`](references/generated-baseline-artifacts.md) only when repo-local skills are already in use or explicitly requested. If inspection reveals a conditional trigger mid-workflow, pause file creation, read the newly relevant reference, then continue with that context.
+
+## Zero-Context Intake
+
+Use `intake_discovery` before bootstrap when the user has no project idea, no target repo, no source notes, no PRD, or only a vague prompt such as "I want to build something." Do not create `wiki/`, `AGENTS.md`, source briefs, plans, roadmap, repo-local skills, or scaffold files during intake.
+
+Distinguish zero context from thin context:
+
+- Zero context means there is not yet enough user-confirmed direction to name a project purpose, audience, primary outcome, product/interface type, or constraints. Run intake first.
+- Thin context means the user supplied a rough but concrete idea, repo, note, source doc, or explicit unknowns. Bootstrap may create a minimal wiki that names gaps without inventing certainty.
+
+During intake, ask focused questions to establish project type, audience, problem, desired outcome, constraints, interface shape, and first useful milestone. Stop with an intake summary unless the user confirms enough direction to bootstrap. A handoff to `bootstrap_new` needs at least a working title, target user/audience, project purpose, primary outcome, rough product/interface type, and known constraints or explicit unknowns.
 
 ## Project Root
 
@@ -204,6 +217,7 @@ Keep this skill concise and move detailed reusable guidance into `references/`. 
 
 - [`references/canonical-bootstrap-contract.md`](references/canonical-bootstrap-contract.md) for the full artifact and safety contract
 - [`references/generated-baseline-artifacts.md`](references/generated-baseline-artifacts.md) for required artifact templates and managed-block markers
+- [`references/intake-discovery-contract.md`](references/intake-discovery-contract.md) for zero-context intake questions, stopping rules, handoff shape, and minimum context before bootstrap
 - [`references/html-artifact-patterns.md`](references/html-artifact-patterns.md) for artifact pattern selection, reader goals, visual structures, copy/export controls, code snippets, evidence UI, style systems, examples, and visual QA
 - [`references/example-minimal-bootstrap.md`](references/example-minimal-bootstrap.md) for a filled minimal output example
 - [`references/example-moderate-import.md`](references/example-moderate-import.md) for a moderate existing-repo import with source briefs, planning, warnings, and `present_but_not_upgraded`
