@@ -124,6 +124,21 @@ For an existing repo, you can be more explicit:
 Use $project-html-wiki to bootstrap this existing app into an HTML-first project wiki.
 ```
 
+For an existing project that has source files but no HTML-first wiki yet, give the agent the import posture explicitly:
+
+```text
+Use $project-html-wiki to onboard this existing project into the HTML-first project wiki flow.
+
+Please inspect the repo first, preserve existing files and Git history, identify whether this is a live product, internal tool, library, archive, or unknown lifecycle, then create only the safe baseline wiki and agent-guidance artifacts.
+
+Important constraints:
+- Do not rewrite existing docs or agent guidance outside managed blocks.
+- Do not create `wiki/plans/mvp/` unless repo evidence clearly says this is greenfield or pre-launch MVP work.
+- Do not install dependencies, generate scaffold code, or choose a new stack.
+- Catalog repository evidence and unknowns in `wiki/Sources.html`.
+- Report created, preserved, skipped, blocked, and `present_but_not_upgraded` artifacts.
+```
+
 The agent should inspect the project first, identify the target root, preserve existing files and Git history, then create or update the wiki baseline, source index, roadmap, planning area, and bounded agent guidance. It should create source briefs only when project evidence justifies them, skip repo-local skill creation unless `.agents/skills/` is already in use or explicitly requested, and report created, preserved, skipped, blocked, and `present_but_not_upgraded` artifacts.
 
 During initialization, the agent should record a repo automation policy in `wiki/AGENTS.md`. The default is conservative: ask before commits, pushes, dependency installs, or long commands. A common low-friction setting is to auto-commit docs-only wiki changes while continuing to ask before code commits and pushes.
