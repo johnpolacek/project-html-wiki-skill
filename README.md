@@ -132,6 +132,24 @@ For an existing live project, the agent should treat the project as post-MVP unl
 
 For a brand-new project, invoke the skill with source context such as a prompt, PRD, notes, or initial repo files. The agent creates the wiki baseline, source index, roadmap, planning area, bounded agent guidance, and Git initialization unless opted out.
 
+For an empty project directory with a rough idea, provide enough thin context to bootstrap without intake:
+
+```text
+Use $project-html-wiki to initialize this empty project directory.
+
+Project idea: I want to build a small web app for tracking recurring home maintenance tasks.
+
+Known context:
+- Audience: me and my household
+- Purpose: remember what needs to be done, when it was last done, and what is overdue
+- Primary outcome: a simple task list with recurring schedules and completion history
+- Interface type: web app
+- Constraints: keep the first version local-first and simple; no accounts or payments
+- Unknowns to preserve: exact tech stack, data storage choice, notification approach
+
+Please bootstrap the HTML-first project wiki, name the unknowns clearly, initialize Git if needed, and do not generate app scaffold code yet.
+```
+
 ### Start With No Source Context
 
 If you want to start a project but do not yet have a repo, PRD, notes, or concrete idea, ask:
