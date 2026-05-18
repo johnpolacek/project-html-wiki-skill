@@ -526,10 +526,11 @@ Use this skill to maintain `[Project Name]`'s `wiki/` knowledge layer. Replace `
 3. Before substantial HTML work, choose the artifact pattern, define the 2-minute reader goal, avoid long prose by using visual structures, add copy/export controls for interactive or decision-oriented pages, and visually QA the result when feasible.
 4. Preserve source context in `wiki/Sources.html`; create `wiki/sources/` briefs only when project evidence justifies them, including `design-brief.html` for durable UI design memory.
 5. Create or update durable plans under `wiki/plans/` before meaningful code, config, schema, dependency, architecture, test, build, or app behavior changes, except for small, local, reversible fixes that do not change durable project direction.
-6. Move fully complete plans into `wiki/plans/zzz_completed/` after all stages, units, completion gates, and verification records support completion; remove them from active current-plan slots while preserving compact archive links.
-7. Sync recent codebase changes back into `wiki/log.html`, relevant plans, roadmap, and source docs when work happened before planning or made the wiki stale.
-8. Update `wiki/index.html` when adding or materially changing durable pages.
-9. Append `wiki/log.html` after planning, validation, or material project changes that affect durable project context.
+6. During implementation, keep execution notes in the active plan or unit for decisions, tradeoffs, deviations, discovered constraints, validation surprises, blockers, and follow-up decisions. Distill durable items into the plan, `wiki/log.html`, source docs, or roadmap before handoff.
+7. Move fully complete plans into `wiki/plans/zzz_completed/` after all stages, units, completion gates, and verification records support completion; remove them from active current-plan slots while preserving compact archive links.
+8. Sync recent codebase changes back into `wiki/log.html`, relevant plans, roadmap, and source docs when work happened before planning or made the wiki stale.
+9. Update `wiki/index.html` when adding or materially changing durable pages.
+10. Append `wiki/log.html` after planning, validation, or material project changes that affect durable project context.
 
 ## Boundaries
 

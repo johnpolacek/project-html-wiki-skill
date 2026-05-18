@@ -105,6 +105,7 @@ Useful variants:
 Use $project-html-wiki to create a plan for billing export.
 Use $project-html-wiki to show me the current plan state for this project.
 Use $project-html-wiki to continue the current plan.
+Use $project-html-wiki to implement this plan and keep execution notes for decisions, tradeoffs, deviations, and validation surprises.
 Use $project-html-wiki to update the plan for the work we just completed.
 ```
 

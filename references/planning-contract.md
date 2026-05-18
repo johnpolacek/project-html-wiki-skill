@@ -350,6 +350,21 @@ Use one or more of:
 
 Do not mark a unit complete unless verification is recorded or explicitly deferred with a reason.
 
+## Execution Notes
+
+During implementation, keep execution notes for decisions, tradeoffs, deviations, discovered constraints, validation surprises, blockers, and follow-up decisions that were not settled by the plan. These notes help the agent avoid losing context while work is in progress.
+
+Execution notes should live in the active plan or unit when one exists. If the user explicitly asks for a separate notes file, place it under `wiki/plans/` or the relevant feature plan folder and link it from the active plan. Do not create unindexed root-level `implementation-notes.html` by default.
+
+Do not use execution notes for routine edits, import fixes, formatting, every test run, or commit summaries that Git already records.
+
+Before handoff, distill execution notes into the smallest durable updates:
+
+- update the active plan when scope, assumptions, unit status, verification, or next execution changed
+- append `wiki/log.html` only for durable project-context decisions, validation outcomes, or follow-up planning targets
+- update `wiki/Sources.html` or source briefs when implementation changed source truth
+- update `wiki/roadmap.html` when next steps, blockers, or deferred work changed
+
 Recommended shape:
 
 ```html
@@ -358,7 +373,7 @@ Recommended shape:
   <section><h2>Goal</h2><p>[Goal]</p></section>
   <section><h2>Scope</h2><p>[Scope]</p></section>
   <section><h2>Non-Goals</h2><p>[Non-goals]</p></section>
-  <section><h2>Implementation Notes</h2><p>[Implementation notes]</p></section>
+  <section><h2>Execution Notes</h2><p>[Decisions, tradeoffs, deviations, discovered constraints, validation surprises, blockers, and follow-up decisions discovered during implementation.]</p></section>
   <section>
     <h2>Verification</h2>
     <h3>Automated</h3><ul><li><code>npm run build</code></li><li><code>npm run lint</code></li></ul>

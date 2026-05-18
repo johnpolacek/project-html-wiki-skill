@@ -192,6 +192,10 @@ When a validation result is only useful for the current task and does not affect
 - Removes archived plans from active current-plan/current-unit slots while preserving compact completed-plan links from `wiki/plans/index.html`.
 - Preserves completed plan trees when archiving, such as moving `mvp/` as a whole instead of separating its stage and unit files.
 - Records completed validation or implementation findings in `wiki/log.html` only when they affect durable project context.
+- Keeps execution notes in the active plan or unit, or in a linked file under `wiki/plans/` when explicitly requested.
+- Distills execution notes into the active plan, `wiki/log.html`, source docs, or roadmap before handoff when they affect durable project context.
+- Does not create unindexed root-level `implementation-notes.html` by default.
+- Does not use execution notes to duplicate routine Git history, every code edit, formatting, import fixes, or every test run.
 
 ## Codebase Sync
 

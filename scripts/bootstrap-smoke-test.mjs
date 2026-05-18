@@ -369,7 +369,9 @@ async function validateContracts() {
   const failures = [];
   const skill = await readFile(path.join(root, "SKILL.md"), "utf8");
   const bootstrap = await readFile(path.join(root, "references/canonical-bootstrap-contract.md"), "utf8");
+  const baseline = await readFile(path.join(root, "references/generated-baseline-artifacts.md"), "utf8");
   const intake = await readFile(path.join(root, "references/intake-discovery-contract.md"), "utf8");
+  const planning = await readFile(path.join(root, "references/planning-contract.md"), "utf8");
   const validation = await readFile(path.join(root, "references/validation-checklist.md"), "utf8");
   const readme = await readFile(path.join(root, "README.md"), "utf8");
 
@@ -415,9 +417,30 @@ async function validateContracts() {
   }
 
   for (const token of [
+    "Execution Notes During Implementation",
+    "decisions",
+    "tradeoffs",
+    "deviations",
+    "validation surprises",
+    "Do not create unindexed root-level `implementation-notes.html` by default.",
+  ]) {
+    if (!skill.includes(token) && !planning.includes(token) && !validation.includes(token)) {
+      failures.push(`execution notes contract missing ${token}`);
+    }
+  }
+
+  for (const token of [
+    "During implementation, keep execution notes",
+    "Distill durable items into the plan, `wiki/log.html`, source docs, or roadmap before handoff.",
+  ]) {
+    if (!baseline.includes(token)) failures.push(`generated baseline missing ${token}`);
+  }
+
+  for (const token of [
     "Start With No Source Context",
     "Use $project-html-wiki to help me figure out a new project from scratch.",
     "Thin context is different",
+    "keep execution notes for decisions, tradeoffs, deviations, and validation surprises",
   ]) {
     if (!readme.includes(token)) failures.push(`README missing ${token}`);
   }

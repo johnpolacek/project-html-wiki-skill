@@ -131,6 +131,16 @@ Plans should define intent, scope, non-goals, dependencies, validation, and the 
 
 Keep routine implementation history in Git, not in plans or `wiki/log.html`. Append `wiki/log.html` only for material planning, validation, implementation, or maintenance work that changes durable project context, and link the entry back to the relevant plan or unit when one exists.
 
+## Execution Notes During Implementation
+
+When implementing planned work, keep running execution notes for information that the original spec or plan did not settle. Capture decisions required by missing context, deviations from the plan, tradeoffs, constraints discovered in code or tests, validation surprises, blockers, and follow-up decisions.
+
+Do not use execution notes for routine edits, formatting, import fixes, every test run, commit summaries, or implementation details already obvious from Git. Execution notes are a working memory aid, not a second commit history.
+
+Prefer adding execution notes to the active plan or unit when one exists. If the user explicitly asks for a separate notes file, keep it under `wiki/plans/` or the relevant feature plan folder and link it from the active plan. Do not create unindexed root-level `implementation-notes.html` by default.
+
+At handoff, distill execution notes into durable wiki updates: update the active plan when scope, unit status, assumptions, or verification changed; append `wiki/log.html` only for durable project-context decisions; update `wiki/Sources.html` or source briefs when implementation changed source truth; update `wiki/roadmap.html` when next steps or blockers changed.
+
 ## Codebase Sync
 
 When changes were made before a plan existed or when the wiki may be stale, reconcile from repository evidence before writing. Inspect Git status, changed files, relevant diffs, recent commits, tests or validation output when available, and the current wiki state.
