@@ -118,12 +118,12 @@ When both `AGENTS.md` and an agent-specific file exist, keep the Project HTML Wi
 
 ## Repo Automation Policy
 
-During bootstrap, import, or audit, record a repo-level automation policy in `wiki/AGENTS.md`. If the user has not chosen a policy, use conservative defaults:
+During bootstrap, import, or audit, record a repo-level automation policy in `wiki/AGENTS.md`. If the user has not chosen a policy, use these defaults:
 
 - Commit docs-only wiki changes: ask
 - Commit code changes: ask
 - Push changes: ask
-- Install dependencies: ask
+- Install dependencies: auto
 - Run long commands: ask
 - Create plans before code: meaningful-only
 

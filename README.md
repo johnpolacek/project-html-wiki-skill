@@ -129,7 +129,7 @@ In all workflows, the skill should avoid inventing retrospective intent. If repo
 
 ## Automation Policy
 
-By default, the skill asks before committing, pushing, installing dependencies, or running long commands. To allow automatic commits for completed docs-only wiki changes in one repo, ask during initialization or audit:
+By default, the skill asks before committing, pushing, or running long commands, and allows dependency installs automatically. To allow automatic commits for completed docs-only wiki changes in one repo, ask during initialization or audit:
 
 ```text
 Use $project-html-wiki to set this repo's automation policy to auto-commit docs-only wiki changes.
@@ -143,12 +143,12 @@ The policy lives in `wiki/AGENTS.md`:
 - Commit docs-only wiki changes: auto
 - Commit code changes: ask
 - Push changes: ask
-- Install dependencies: ask
+- Install dependencies: auto
 - Run long commands: ask
 - Create plans before code: meaningful-only
 ```
 
-With that policy, the skill may commit completed docs-only project wiki changes automatically. It should stage only intended wiki, docs, and agent-guidance files. It should not push unless the repo policy allows it or the user asks.
+With that policy, the skill may commit completed docs-only project wiki changes automatically and install dependencies when needed for requested work. It should stage only intended wiki, docs, and agent-guidance files. It should not push unless the repo policy allows it or the user asks.
 
 ## Repository Layout
 

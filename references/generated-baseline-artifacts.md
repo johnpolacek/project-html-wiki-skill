@@ -7,7 +7,7 @@ Use this reference when creating the required baseline files for a bootstrapped 
 When updating existing root or wiki agent guidance such as `AGENTS.md`, `CLAUDE.md`, or `wiki/AGENTS.md`, preserve user-authored content and add or replace only this bounded block:
 
 ```markdown
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 [managed project wiki guidance]
 <!-- PROJECT-HTML-WIKI-SKILL:END -->
 ```
@@ -19,7 +19,7 @@ Do not create multiple managed blocks in the same file. If markers already exist
 ```markdown
 # AGENTS.md instructions for [project-root]
 
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 ## [Project Name] Agent Guide
 
 ### Project Wiki
@@ -45,7 +45,7 @@ Do not create multiple managed blocks in the same file. If markers already exist
 - Commit docs-only wiki changes: ask
 - Commit code changes: ask
 - Push changes: ask
-- Install dependencies: ask
+- Install dependencies: auto
 - Run long commands: ask
 - Create plans before code: meaningful-only
 <!-- PROJECT-HTML-WIKI-SKILL:END -->
@@ -58,7 +58,7 @@ Create `CLAUDE.md` only when the repository already uses Claude Code guidance or
 ```markdown
 # CLAUDE.md instructions for [project-root]
 
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 ## [Project Name] Project Wiki
 
 - Read `AGENTS.md`, `wiki/AGENTS.md`, and `wiki/index.html` before project-specific structural work.
@@ -74,7 +74,7 @@ Create `CLAUDE.md` only when the repository already uses Claude Code guidance or
 ```markdown
 # [Project Name] Wiki Agent Guide
 
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 This `wiki/` directory is the maintained knowledge and planning layer for `[Project Name]`.
 
 ## Source Of Truth
@@ -100,12 +100,12 @@ Do not create root-level `docs/` or `tasks/` for maintained project knowledge.
 
 ## Automation Policy
 
-Default to asking before committing, pushing, installing dependencies, or running long commands unless the user chooses a more automated repo policy.
+Default to asking before committing, pushing, or running long commands. Dependency installs are allowed automatically unless the user chooses a stricter repo policy.
 
 - Commit docs-only wiki changes: ask
 - Commit code changes: ask
 - Push changes: ask
-- Install dependencies: ask
+- Install dependencies: auto
 - Run long commands: ask
 - Create plans before code: meaningful-only
 <!-- PROJECT-HTML-WIKI-SKILL:END -->

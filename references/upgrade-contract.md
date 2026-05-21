@@ -15,10 +15,12 @@ Use this reference when auditing or upgrading a project that was previously boot
 Current marker:
 
 ```markdown
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 ...
 <!-- PROJECT-HTML-WIKI-SKILL:END -->
 ```
+
+Earlier `PROJECT-HTML-WIKI-SKILL:START v1` markers are recognized and may be upgraded to `v2` when replacing a managed block.
 
 Legacy `PROJECT-WIKI-BOOTSTRAPPER` markers are treated as `v0`:
 
@@ -28,7 +30,7 @@ Legacy `PROJECT-WIKI-BOOTSTRAPPER` markers are treated as `v0`:
 <!-- PROJECT-WIKI-BOOTSTRAPPER:END -->
 ```
 
-When upgrading a `v0` block to `v1`, replace only the content inside the block and update the markers to the current `PROJECT-HTML-WIKI-SKILL` prefix with the start marker set to `v1`. Preserve all content outside the markers.
+When upgrading a `v0` or `v1` block to `v2`, replace only the content inside the block and update the markers to the current `PROJECT-HTML-WIKI-SKILL` prefix with the start marker set to `v2`. Preserve all content outside the markers.
 
 ## Files With Managed Blocks
 

@@ -168,7 +168,7 @@ Update `wiki/roadmap.html`, `wiki/Sources.html`, source briefs, or `wiki/index.h
 - Follow existing agent guidance conventions. If the repo already uses `CLAUDE.md`, preserve and update that file with a managed block when appropriate; do not create extra agent-specific files unless the convention already exists or the user asks.
 - Initialize Git for newly created projects unless the user opts out.
 - Preserve existing Git history for imported repos.
-- Do not commit, push, install dependencies, or generate scaffold code by default. Follow the repo automation policy when it explicitly allows commits or other actions.
+- Do not commit, push, or generate scaffold code by default. Follow the repo automation policy for commits, pushes, dependency installs, and other actions.
 - Do not create implementation plans in root-level `docs/`, `tasks/`, or ad hoc planning files outside `wiki/`.
 - Never leave bracketed placeholders in generated project files. Replace them with project-specific content, or write `Unknown` when current evidence does not support a value.
 - Name unknowns and contradictions instead of inventing certainty.
@@ -183,11 +183,11 @@ Default policy when none exists:
 - Commit docs-only wiki changes: ask
 - Commit code changes: ask
 - Push changes: ask
-- Install dependencies: ask
+- Install dependencies: auto
 - Run long commands: ask
 - Create plans before code: meaningful-only
 
-During bootstrap, import, or audit, ask whether the user wants to keep the conservative default or allow more automation for that repo. Good common setting: `Commit docs-only wiki changes: auto`, while keeping code commits, pushes, and dependency installs as `ask`.
+During bootstrap, import, or audit, ask whether the user wants to keep the default policy or allow different automation for that repo. Good common setting: `Commit docs-only wiki changes: auto`, while keeping code commits and pushes as `ask` and dependency installs as `auto`.
 
 When auto-committing is allowed:
 

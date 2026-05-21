@@ -106,7 +106,7 @@ function html(title, body) {
 const files = new Map([
   ["AGENTS.md", `# AGENTS.md instructions for Invoice Review
 
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 ## Invoice Review Agent Guide
 
 ### Project Wiki
@@ -121,14 +121,14 @@ const files = new Map([
 - Commit docs-only wiki changes: ask
 - Commit code changes: ask
 - Push changes: ask
-- Install dependencies: ask
+- Install dependencies: auto
 - Run long commands: ask
 - Create plans before code: meaningful-only
 <!-- PROJECT-HTML-WIKI-SKILL:END -->
 `],
   ["wiki/AGENTS.md", `# Invoice Review Wiki Agent Guide
 
-<!-- PROJECT-HTML-WIKI-SKILL:START v1 -->
+<!-- PROJECT-HTML-WIKI-SKILL:START v2 -->
 This \`wiki/\` directory is the maintained knowledge and planning layer for \`Invoice Review\`.
 
 Read \`index.html\` before structural wiki changes. Keep durable project knowledge, planning, decisions, and validation notes under \`wiki/\`. Use standalone HTML pages with embedded CSS, relative links, semantic structure, and accessible tables, diagrams, or controls when they improve readability.
